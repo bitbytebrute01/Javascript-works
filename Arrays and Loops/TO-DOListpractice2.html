@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    p{
+        margin-top: 5px;
+    }
+</style>
+<body>
+    <input type="text" onkeydown="
+        if(event.key === 'Enter'){
+            addItem();
+        }
+        if(event.key === 'Escape'){
+            deleteItem();
+        }
+        " class="input" placeholder="Enter To-Do Item">
+    <button onclick="addItem()">Submit</button>
+    <div class="out"></div>
+
+    <div class="example"></div>
+</body>
+<script>
+    let Items = [];
+    let input = document.querySelector('.input');
+
+    renderList();
+    function renderList() {
+        let i;
+        let ToDoList = '';
+        for (i = 0; i < Items.length; i++) {
+            let ToDo = Items[i];
+            let html = `<p>${ToDo}</p>`;
+            ToDoList += html;
+        }
+        document.querySelector('.out').innerHTML = ToDoList;
+    }
+
+    function addItem() {
+        let name = input.value;
+        Items.push(name);
+        input.value = '';
+        renderList();
+    }
+
+    function deleteItem(){
+        Items.pop();
+        renderList();
+    }
+</script>
+
+</html>

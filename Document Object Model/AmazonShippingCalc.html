@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Cost < 100 Rupees : 30 Delivery Charges</p>
+    <p>Cost > 100 Rupees : Free Delivery</p>
+    <input type="text" placeholder="Enter Amount" onkeydown="
+    if(event.key === 'Enter'){
+        CalculateCost();
+    }
+    " class="input">
+    <button onclick="CalculateCost()
+    ">Calculate</button>
+    <p class="result"></p>
+</body>
+    <script>
+        function CalculateCost(){
+            let cost = Number(document.querySelector('.input').value);
+            let result = document.querySelector('.result');
+            if(cost <= 100){
+                result.innerHTML = ` ₹${cost + 10}`;
+            }
+            else{
+                result.innerHTML = ` ₹${cost}`;
+            }
+        }
+    </script>
+</html>

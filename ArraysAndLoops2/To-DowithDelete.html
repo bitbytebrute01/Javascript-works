@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+<body>
+    <input type="text" onkeydown="
+        if(event.key === 'Enter'){
+            addItem()
+        }
+        if(event.key === 'Escape'){
+            Items.pop();
+            renderList();
+        }
+        " class="name" placeholder="Enter To-Do Item">
+    <input type="date" class="date">
+    <button onclick="addItem()">Add</button>
+    <div class="out"></div>
+</body>
+    <script>
+        let Items = [];
+
+        function renderList(){
+            let toDoList = '';
+            for(let i = 0;i<Items.length;i++){
+                let name = Items[i].name;
+                let date = Items[i].date;
+
+                let html = `<p>${name} ${date}<button onclick="deleteItem(${i})">Delete</button></p>
+`;
+                toDoList += html;
+            }
+            console.log(toDoList);
+            document.querySelector('.out').innerHTML = toDoList;
+        }
+        function addItem(){
+            let name = document.querySelector('.name').value;
+            let date = document.querySelector('.date').value;
+            
+            Items.push({name,date});
+            document.querySelector('.name').value = '';
+            renderList();
+        }
+
+        function deleteItem(index){
+            Items.splice(index,1);
+            renderList();
+        }
+    </script>
+</html>

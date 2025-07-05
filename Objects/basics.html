@@ -1,0 +1,30 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        
+    </body>
+        <script>
+            let product = {
+                rating : 0,
+                name : 'Aditya',
+
+                rating : {
+                    stars : 8.5,
+                    count : 5,
+                },
+                fun : function callIt(){
+                    call : 'Helpline';
+                }
+            };
+            console.log(product);
+            let JSONVersion = JSON.stringify(product);
+            console.log(JSONVersion);
+            let BackToObj = JSON.parse(JSON.stringify(product));
+            console.log(BackToObj);
+        </script>
+    </html>

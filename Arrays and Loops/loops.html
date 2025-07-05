@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" class="input" placeholder="Enter the To-Do Item">
+    <button class="submit" onclick="addItem()">Submit</button>
+    <p class="out"></p>
+</body>
+
+<script>
+    let a = [];
+    let input = document.querySelector('.input');
+    let out = document.querySelector('.out');
+
+    function addItem() {
+        let value = input.value;
+        a.push(value); // add one new item to array
+        out.innerHTML += value + '<br>'; // show it immediately
+        input.value = ""; // clear input box
+    }
+</script>
+
+</html>
