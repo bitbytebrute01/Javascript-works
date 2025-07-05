@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+    <script>
+        function minMax(array){
+
+            if(array.length === 0){
+                return {maxNum : null, minNum : null};
+            }
+            let maxNum = 0;
+            let i;
+            for(i=0;i<array.length;i++){
+                if(maxNum < array[i]){
+                    maxNum = array[i];
+                }
+            }
+            let minNum = maxNum;
+            for(i=0;i<array.length;i++){
+                if(minNum > array[i]){
+                    minNum = array[i];
+                }
+            }
+            return {maxNum,minNum};
+        }
+
+        console.log(minMax([4,3,124,1212]));
+    </script>
+
+</html>

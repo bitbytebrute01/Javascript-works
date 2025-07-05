@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        .out p {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px;
+        }
+        .out button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" class="input" placeholder="Enter to-do Item">
+    <input type="date" class="due-date">
+    <button onclick="addItem()">Add</button>
+    <div class="out"></div>
+
+    <script>
+        let Items = [];
+        let input = document.querySelector('.input');
+        let date = document.querySelector('.due-date');
+        let outDiv = document.querySelector('.out');
+
+        function renderList() {
+            let toDoList = '';
+            for (let i = 0; i < Items.length; i++) {
+                toDoList += `
+                    <p>${Items[i].name} - ${Items[i].date}</p>
+                    <button onclick="deleteItem(${i})">X</button><br>
+                `;
+            }
+            outDiv.innerHTML = toDoList;
+        }
+
+        function addItem() {
+            let name = input.value.trim();
+            let dueDate = date.value;
+            if(name === '' || dueDate === '') return alert('Enter all fields!');
+
+            Items.push({ name: name, date: dueDate });
+            input.value = '';
+            date.value = '';
+            renderList();
+        }
+
+        function deleteItem(index) {
+            Items.splice(index, 1);
+            renderList();
+        }
+    </script>
+</body>
+</html>

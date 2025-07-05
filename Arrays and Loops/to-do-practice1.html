@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>To do List</p>
+    <input type="text" onkeydown="Click(event)" class="input" placeholder="Enter the To-Do Item">
+    <button onclick="addItem()">Submit</button>
+</body>
+<script>
+    let Items = [];
+    let input = document.querySelector('.input');
+
+    function Click(event) {
+        if (event.key === 'Enter') {
+            addItem();
+        }
+
+        if (event.key === 'Escape') {
+            Items = [];
+            console.log(Items);
+        }
+
+        if (event.key === 'Control') {
+            console.log(Items.length);
+        }
+    }
+    function addItem() {
+        let name = input.value;
+        Items.push(name);
+        console.log(Items);
+        input.value = '';
+    }
+</script>
+
+</html>

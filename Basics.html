@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple To-Do App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        h3 {
+            font-size: 15px;
+        }
+
+        html,
+        body {
+            height: 70vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+            background-color: rgb(209, 209, 209);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            background-color: white;
+            justify-content: center;
+            text-align: center;
+        }
+
+        input {
+            padding: 8px;
+            background-color: aliceblue;
+            border: none;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+        }
+
+        button {
+            background-color: rgb(92, 92, 197);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .result {
+            display: flex;
+            width: 220px;
+            justify-content: space-between;
+            font-size: 12px;
+            align-items: center;
+            gap: 10px;
+            margin: 10px auto;
+            background: #f4f6f9;
+            padding: 8px;
+            border-radius: 10px;
+        }
+        .date {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>Simple To-Do List App</h3>
+        <input type="text" class="input" placeholder="Enter the To-Do Item">
+        <input type="date" class="date">
+        <button onclick="addItem()">Add</button>
+        <div class="out"></div>
+    </div>
+
+    <script>
+        let Items = [];
+        let input = document.querySelector('.input');
+        let dueDate = document.querySelector('.date');
+        let out = document.querySelector('.out');
+
+        function renderList() {
+            out.innerHTML = '';
+            for (let i = 0; i < Items.length; i++) {
+                out.innerHTML += `
+                    <div class="result">
+                        <p>${Items[i].name}</p>
+                        <p class = "date">${Items[i].date}</p>
+                        <button onclick="deleteItem(${i})">Delete</button>
+                    </div>`;
+            }
+        }
+
+        function addItem() {
+            let name = input.value.trim();
+            let date = dueDate.value;
+            Items.push({ name, date });
+            input.value = '';
+            dueDate.value = '';
+            renderList();
+        }
+
+        function deleteItem(index) {
+            Items.splice(index, 1);
+            renderList();
+        }
+    </script>
+</body>
+</html>
