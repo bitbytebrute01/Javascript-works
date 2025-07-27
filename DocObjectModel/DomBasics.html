@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="js-btn">Click On me !</button>
+    <button class="js-button">2nd button!</button>
+</body>
+<script>
+    console.log(document.querySelector('button'));
+    console.log(document.querySelector('.js-button'));
+
+    let btn = document.querySelector('.js-button').innerHTML;
+    console.log(typeof btn);
+    console.log(btn.tagName);
+    let btn2 = document.querySelector('.js-btn').innerHTML;
+    console.log(btn);
+    console.log(btn2);
+    document.body.innerHTML = btn;
+</script>
+
+</html>

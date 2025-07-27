@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heads and Tails Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #2e2e2e;
+            color: white;
+        }
+
+        .header {
+            height: 20%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .game-wrapper {
+            height: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .reset {
+            margin-top: 20px;
+        }
+
+        button {
+            border-radius: 12px;
+            border: none;
+            height: 50px;
+            width: 120px;
+            background-color: #f0f0f0;
+            color: #222;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #d4d4d4;
+            transform: scale(1.05);
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="title">Heads or Tails</div>
+    </div>
+
+    <div class="game-wrapper">
+        <div class="container">
+            <button onclick="playerGame('head')">Heads</button>
+            <button onclick="playerGame('tails')">Tails</button>
+        </div>
+
+        <div class="reset">
+            <button onclick="
+            console.log('The Score has Been Reset !')
+            localStorage.removeItem('score');">Reset Score</button>
+        </div>
+    </div>
+
+    <script>
+        let score = JSON.parse(localStorage.getItem('score'));
+
+        if (score === null)
+            score = {
+                wins: 0,
+                losses: 0
+            };
+
+        console.log(score);
+
+        function playerGame(playerMove) {
+            let computerMove = guess();
+            let result = '';
+
+            if (playerMove === computerMove) {
+                result = 'win';
+                score.wins += 1;
+            } else {
+                result = 'lose';
+                score.losses += 1;
+            }
+
+            localStorage.setItem('score', JSON.stringify(score));
+
+            alert(`You chose ${playerMove}, computer chose ${computerMove}.\nYou ${result}!\nWins: ${score.wins}, Losses: ${score.losses}`);
+        }
+
+        function guess() {
+            return Math.random() < 0.5 ? 'head' : 'tails';
+        }
+    </script>
+</body>
+
+</html>

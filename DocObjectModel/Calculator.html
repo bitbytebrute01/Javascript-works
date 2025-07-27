@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Website (Eval)</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #1c1f2a, #2e3440);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Rubik', sans-serif;
+            color: white;
+        }
+
+        .container {
+            background: linear-gradient(135deg, #232526, #414345);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 260px;
+        }
+
+        .display {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 22px;
+            text-align: right;
+            height: 50px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        button {
+            height: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(108, 92, 231, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text" class="display" style="font-size: 40px;">
+        <div class="button-grid">
+            <button onclick="UpdateCalculation('1')">1</button>
+            <button onclick="UpdateCalculation('2')">2</button>
+            <button onclick="UpdateCalculation('3')">3</button>
+            <button onclick="UpdateCalculation('+')">+</button>
+
+            <button onclick="UpdateCalculation('4')">4</button>
+            <button onclick="UpdateCalculation('5')">5</button>
+            <button onclick="UpdateCalculation('6')">6</button>
+            <button onclick="UpdateCalculation('-')">-</button>
+
+            <button onclick="UpdateCalculation('7')">7</button>
+            <button onclick="UpdateCalculation('8')">8</button>
+            <button onclick="UpdateCalculation('9')">9</button>
+            <button onclick="UpdateCalculation('*')">*</button>
+
+            <button onclick="UpdateCalculation('0')">0</button>
+            <button onclick="
+            result();
+            ">=</button>
+            <button onclick="UpdateCalculation('/')">/</button>
+            <button onclick="Clear()">C</button>
+        </div>
+    </div>
+
+    <script>
+        let Calculation = (JSON.parse(localStorage.getItem('result')));
+        if(Calculation === null){
+            Calculation = '';
+        }
+        console.log(Calculation);
+        function UpdateCalculation(number) {
+            Calculation += number;
+            document.querySelector('.display').value = Calculation;
+        }
+
+        function result() {
+            document.querySelector('.display').value = eval(Calculation);
+            localStorage.setItem('result',JSON.stringify(eval(Calculation)));
+        }
+
+        function Clear() {
+            Calculation = '';
+            document.querySelector('.display').value = '';
+        }
+    </script>
+</body>
+</html>

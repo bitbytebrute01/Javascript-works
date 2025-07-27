@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basics of Objects and learning about the JSON</title>
+</head>
+
+<body>
+    <button onclick="pick()">Click</button>
+</body>
+<script>
+    console.log(name);
+    let product = {
+        shirt: '25$',
+        pant: '26$',
+        books: '27$',
+        rating: {
+            stars: 4.5,
+            count: 24
+        },
+        func: function addition(a, b) {
+            return a + b;
+        }
+    }
+
+    console.log(product);
+    console.log(product.shirt);
+    console.log(product.pant);
+    console.log(product.books);
+    console.log(`The Price of The Shirt is ${product.shirt}`);
+    console.log(`The Rating ( Stars ) of the product is ${product.rating.stars}`);
+    console.log(`The Addition of Two numbers is ${product.func(15, 16)}`);
+    let add = product.func(15, 16);
+    console.log(`The Addition of the Two numbers : ${add}`);
+
+    let JSONtext = JSON.stringify(product);
+    console.log(JSONtext);
+    let JSONtextParsed = JSON.parse(JSONtext);
+    console.log(JSONtextParsed);
+
+    console.log(localStorage.getItem(name));
+    function pick() {
+        localStorage.setItem('name', 'Aditya');
+    }
+</script>
+
+</html>

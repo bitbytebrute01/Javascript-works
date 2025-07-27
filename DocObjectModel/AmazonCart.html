@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Shipping Order </title>
+</head>
+
+<body>
+    <p>Amazon Shipping Order</p>
+    <input type="text" class="js-text" placeholder="Cost of Order" 
+    onkeydown="KeyDownFunction();">
+    <button onclick="CalcShipping();">Calculate</button>
+    <button onclick="Reset();">Reset</button>
+    <p class="js-result"></p>
+</body>
+<script>
+    function KeyDownFunction() {
+        let key = event.key;
+        if (key === 'Enter') {
+            CalcShipping();
+        }
+    }
+    function CalcShipping() {
+        let text = document.querySelector('.js-text');
+        let cost = Number(text.value);
+        if (cost < 40 && cost >= 1) {
+            cost += 10;
+        }
+        if (cost < 0) {
+            document.querySelector('.js-result').innerHTML = 'Please enter Valid Number';
+            return;
+        }
+
+        document.querySelector('.js-result').innerHTML = `$${cost}`;
+    }
+    function Reset() {
+        document.querySelector('.js-text').value = '';
+        document.querySelector('.js-result').innerHTML = '';
+    }
+</script>
+
+</html>
